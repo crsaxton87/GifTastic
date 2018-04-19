@@ -1,0 +1,44 @@
+h3 {
+    font-size: 1em;
+    margin: 10px 0 0 0;
+}
+
+.animal-btn {
+    min-width: 100px;
+}
+
+.gif {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+// Waterfall styles
+.wf-container { 
+    margin: 0 auto; 
+}
+
+.wf-container:before,.wf-container:after {
+    content: '';
+    display: table;
+}
+
+.wf-container:after {
+    clear: both;
+}
+
+.wf-column {
+    float: left;
+}
+
+.wf-box { margin: 10px; }
+
+.wf-box img {
+  display: block;
+  width: 100%;
+}
+
+.wf-box .content {
+  border: 0;
+  border-top-width: 0;
+  padding: 5px 8px;
+}
