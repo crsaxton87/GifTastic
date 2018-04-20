@@ -25,13 +25,18 @@
     <title>GIFs for Good Causes</title>
 </head>
 <body>
-
+    <!-- Bootstrap grid container -->
     <div class="container-fluid">
+        <!-- Top bar: Buttons -->
         <div class="row">
             <div class="col-md-12" id="buttons"></div>
         </div>
         <div class="row">
-            <div class="col-md-9 wf-container" id="gifs"></div>
+            <!-- GIF Container -->
+            <div class="col-md-9" id="left-col">
+                <div class="wf-container" id="gifs"></div>
+            </div>
+            <!-- Sidebar -->
             <div class="col-md-3">
                 <h2>Add an animal:</h2>
                 <form onsubmit="return false"><input id="new-animal" type="text" ><input id="add-animal" type="submit" value="Add Animal"></form>
