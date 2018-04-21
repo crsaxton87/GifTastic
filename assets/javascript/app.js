@@ -186,7 +186,7 @@ $(main).on('click','#btn-zip', function () {
     var zip = $('#zip').val().trim();
 
     // Query PetFinder
-    $.getJSON('http://api.petfinder.com/pet.find?key=77eb2568edd983423bde81c1110a0a7d&animal='+query+'&location='+zip+'&format=json&count=2&callback=?')
+    $.getJSON('https://api.petfinder.com/pet.find?key=77eb2568edd983423bde81c1110a0a7d&animal='+query+'&location='+zip+'&format=json&count=2&callback=?')
     .done(function(response) { 
             console.log(response); 
             var id = '',
