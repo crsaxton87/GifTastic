@@ -46,7 +46,8 @@ function giphyAPI() {
                     newContent = $('<div class="content">'),
                     newGif = $('<video class="gif">'),
                     newDL = $('<img src="assets/images/download.png" class="download">'),
-                    newLink = $('<a href="'+response.data[i].images.original.url+'">'),
+                    // newLink = $('<a href="'+response.data[i].images.original.url+'">'),
+                    newLink = $('<a href="https://i.giphy.com/'+response.data[i].id+'.gif">'),
                     newH3 = $('<h3>');
 
                 // Hierarchy adjustments
@@ -94,6 +95,18 @@ $(main).on('click', '.animal-btn', function() {
 
     // Add to offset
     offset += 10;
+
+    // Petfinder visibility
+    if (query == 'dog' || query == 'cat' || query == 'horse' || query == 'bird') {
+        $('#adoptable').css('display','block');
+        $('#adoptable-text').html('Adoptable '+query+'s in your area:');
+    }
+    else {
+        $('#adoptable').css('display','none');
+    }
+
+    // Clear Petfinder results
+    $('#pets').empty();
     
 });
 
@@ -147,7 +160,6 @@ $(main).on('mouseout','.content', function (){
     $(this).find(".download").css('opacity','0');
 });
 
-
 // When "Add Animal" button clicked
 $(main).on('click', '#add-animal', function() {
 
@@ -166,3 +178,53 @@ $(main).on('click', '#add-animal', function() {
     // Generate new buttons
     buttonGen();
 });
+
+// Petfinder query
+$(main).on('click','#btn-zip', function () {
+
+    // Save user zip code
+    var zip = $('#zip').val().trim();
+
+    // Query PetFinder
+    $.getJSON('http://api.petfinder.com/pet.find?key=77eb2568edd983423bde81c1110a0a7d&animal='+query+'&location='+zip+'&format=json&count=2&callback=?')
+    .done(function(response) { 
+            console.log(response); 
+            var id = '',
+                name = '',
+                photo = '', 
+                city = '',
+                state = '',
+                array = response.petfinder.pets.pet;
+            for(i=0;i<array.length;i++) {
+                // Assign response values to variables
+                id = response.petfinder.pets.pet[i].id.$t;
+                name = response.petfinder.pets.pet[i].name.$t;
+                photo = response.petfinder.pets.pet[i].media.photos.photo[2].$t;
+                city = response.petfinder.pets.pet[i].contact.city.$t;
+                state = response.petfinder.pets.pet[i].contact.state.$t;
+                console.log(id, name, photo, city, state);
+
+                // Create base layout
+                var newId = $('<a href="https://www.petfinder.com/petdetail/'+id+'">'),
+                    newName = $('<p class="adopt-name">'),
+                    newPhoto = $('<img src="'+photo+'">'),
+                    newLocation = $('<p>'),
+                    newContainer = $('<div class="adopt-container">');
+                
+                // Add values to new elements
+                newName.append(name);
+                newLocation.append(city+', '+state);
+
+                // Hierarchy adjustments
+                newContainer.append(newName,newPhoto,newLocation);
+                newId.append(newContainer);
+
+                // Place in layout
+                $('#pets').append(newId);
+            }
+        })
+    .fail(function(err) {console.log(err);}); 
+});
+
+
+

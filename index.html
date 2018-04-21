@@ -38,8 +38,15 @@
             </div>
             <!-- Sidebar -->
             <div class="col-md-3">
+
                 <h2>Add an animal:</h2>
                 <form onsubmit="return false"><input id="new-animal" type="text" ><input id="add-animal" type="submit" value="Add Animal"></form>
+
+                <div id="adoptable">
+                    <h3 id="adoptable-text">Adoptable pets in your area:</h3>
+                    <form onsubmit="return false"><input id="zip" type="text" value="ZIP code" onfocus="if(this.value == 'value') { this.value = ''; }"><input id="btn-zip" type="submit" value="GO"></form>
+                    <div id="pets"></div>
+                </div>
             </div>
         </div>
     </div>

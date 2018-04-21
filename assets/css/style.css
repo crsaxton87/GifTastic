@@ -90,3 +90,43 @@ h3 {
     position: relative;
     height: 75px;
 }
+
+/* Adoptable animals */
+#adoptable {
+    position: relative;
+    width: 200px;
+    display: none;
+}
+
+#adoptable a:link {
+    color: black;
+}
+
+#adoptable a:hover {
+    text-decoration: none;
+}
+
+#zip {
+    margin-top: 10px;
+}
+
+.adopt-container {
+    margin: 0 auto;
+    font-size: 1em;
+    text-align: center;
+    clear: both;
+    margin-top: 30px;
+}
+
+.adopt-container img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.adopt-name {
+    font-size: 1.5em;
+}
+
+
+
